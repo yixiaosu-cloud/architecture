@@ -7,14 +7,6 @@
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
-    <div id="protocol-warning" style="display:none; position:fixed; top:0; left:0; width:100%; background:red; color:white; text-align:center; padding:10px; z-index:1000;">
-        错误：请通过 http://localhost:8000 访问此页面，不要直接打开文件！
-    </div>
-    <script>
-        if (window.location.protocol === 'file:') {
-            document.getElementById('protocol-warning').style.display = 'block';
-        }
-    </script>
     <header>
         <h1>传统建筑展示平台</h1>
         <nav>
