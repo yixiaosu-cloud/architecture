@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传统建筑展示平台 - 蒙古包与藏式碉房</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>传统建筑展示平台</h1>
+        <nav>
+            <button id="mongolian-yurt">蒙古包</button>
+            <button id="tibetan-house">藏式碉房</button>
+        </nav>
+    </header>
+    
+    <main>
+        <div id="model-container"></div>
+        <div id="controls">
+            <button id="reset-view">重置视图</button>
+            <div class="slider-container">
+                <label for="param-slider">结构参数调整</label>
+                <input type="range" id="param-slider" min="0" max="100" value="50">
+            </div>
+        </div>
+    </main>
+    
+    <div id="animation-controls">
+        <button id="play-animation">播放建造动画</button>
+        <button id="pause-animation">暂停</button>
+        <button id="reset-animation">重置动画</button>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="public/js/main.js"></script>
+    <script src="public/js/controls.js"></script>
+    <script src="public/js/animations.js"></script>
+</body>
+</html>
