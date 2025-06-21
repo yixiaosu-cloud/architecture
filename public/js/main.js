@@ -71,7 +71,19 @@ function loadModel(modelPath) {
     }
     
     // 创建完整URL用于调试
-    const fullUrl = new URL(modelPath, window.location.origin).href;
+    // 修复GitHub Pages路径问题
+    let fullUrl;
+    
+    // 本地开发环境
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        fullUrl = modelPath;
+    } 
+    // GitHub Pages环境
+    else {
+        const repoName = window.location.pathname.split('/')[1];
+        fullUrl = `/${repoName}/${modelPath}`;
+    }
+    
     console.log('开始加载模型:', fullUrl);
     
     // 创建GLTF加载器
@@ -111,6 +123,9 @@ function loadModel(modelPath) {
     console.error('错误详情:', error);
     console.error('请求URL:', fullUrl);
     console.error('当前页面协议:', window.location.protocol);
+    
+    // 添加备用模型加载机制
+    loadFallbackModel();
 });
 }
 
@@ -119,3 +134,26 @@ init();
 
 // 导出函数供controls.js使用
 window.loadModel = loadModel;
+
+// 备用模型加载方案
+function loadFallbackModel() {
+    console.log('尝试加载备用模型');
+    const backupModelUrl = 'https://raw.githubusercontent.com/yixiaosu-cloud/traditional-architecture/main/public/models/armchair.gltf';
+    
+    // 创建GLTF加载器
+    const loader = new THREE.GLTFLoader();
+    loader.setCrossOrigin('');
+    
+    loader.load(backupModelUrl, (gltf) => {
+        console.log('备用模型加载成功');
+        currentModel = gltf.scene;
+        scene.add(currentModel);
+        
+        if (window.onArmchairLoaded) {
+            window.onArmchairLoaded(currentModel);
+        }
+    }, undefined, (error) => {
+        console.error('备用模型加载失败:', error);
+        alert('模型加载失败，请检查网络连接');
+    });
+}

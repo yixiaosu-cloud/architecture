@@ -2,12 +2,12 @@
 function initControls() {
     // 模型切换按钮
     document.getElementById('mongolian-yurt').addEventListener('click', () => {
-    loadModel('public/models/armchair.gltf');
+        loadModel('models/armchair.gltf');
         setupMongolianYurtParameters();
     });
     
     document.getElementById('tibetan-house').addEventListener('click', () => {
-        loadModel('public/models/armchair.gltf');
+        loadModel('models/armchair.gltf');
         setupTibetanHouseParameters();
     });
     
@@ -19,7 +19,7 @@ function initControls() {
     slider.addEventListener('input', handleParameterChange);
     
     // 默认加载蒙古包模型
-        loadModel('public/models/armchair.gltf');
+    loadModel('models/armchair.gltf');
     setupMongolianYurtParameters();
 }
 
