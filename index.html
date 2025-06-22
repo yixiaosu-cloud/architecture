@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游牧与高原：建筑智慧的传承 | 蒙古包与藏式碉房展示平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8C6C3F', // 代表传统建筑木材和土壤的暖棕色
+                        secondary: '#1E3A8A', // 象征天空和宗教元素的深蓝色
+                        accent: '#B91C1C', // 代表活力和文化元素的红色
+                        neutral: '#1F2937', // 中性深灰
+                        'neutral-light': '#F3F4F6', // 中性浅灰
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 0.5s ease-in-out',
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-neutral-light text-neutral overflow-x-hidden">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="bg-white/80 bg-blur shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="#" class="flex-shrink-0 flex items-center">
+                            <i class="fa fa-university text-primary text-2xl mr-2"></i>
+                            <span class="font-bold text-xl text-primary">游牧与高原</span>
+                        </a>
+                        <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                            <a href="#home" class="border-primary text-primary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">首页</a>
+                            <a href="#models" class="border-transparent text-neutral hover:text-primary hover:border-primary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">三维模型</a>
+                            <a href="#process" class="border-transparent text-neutral hover:text-primary hover:border-primary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">建造工艺</a>
+                            <a href="#principles" class="border-transparent text-neutral hover:text-primary hover:border-primary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">科学原理</a>
+                            <a href="#interactive" class="border-transparent text-neutral hover:text-primary hover:border-primary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">互动体验</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button type="button" class="p-2 rounded-md text-neutral hover:text-primary focus:outline-none sm:hidden">
+                            <i class="fa fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 移动端菜单 -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
+            <a href="#home" class="bg-primary/10 text-primary block px-3 py-2 rounded-md text-base font-medium">首页</a>
+            <a href="#models" class="text-neutral hover:bg-primary/10 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">三维模型</a>
+            <a href="#process" class="text-neutral hover:bg-primary/10 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">建造工艺</a>
+            <a href="#principles" class="text-neutral hover:bg-primary/10 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">科学原理</a>
+            <a href="#interactive" class="text-neutral hover:bg-primary/10 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">互动体验</a>
+        </div>
+    </div>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-20 pb-16 md:pt-28 md:pb-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-neutral leading-tight mb-6 animate-fadeIn">
+                    <span class="text-primary">蒙古包</span>与<span class="text-secondary">藏式碉房</span>
+                </h1>
+                <p class="text-[clamp(1.1rem,2vw,1.3rem)] text-neutral/80 max-w-3xl mx-auto mb-10 animate-fadeIn" style="animation-delay: 0.2s">
+                    探索两种独特建筑文化的智慧结晶，感受游牧民族与高原居民的居住艺术
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn" style="animation-delay: 0.4s">
+                    <a href="#models" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition duration-150 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <i class="fa fa-cube mr-2"></i> 浏览三维模型
+                    </a>
+                    <a href="#process" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary hover:bg-secondary/90 transition duration-150 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <i class="fa fa-play-circle mr-2"></i> 观看建造演示
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三维模型浏览区域 -->
+    <section id="models" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral mb-4">三维模型浏览</h2>
+                <p class="text-lg text-neutral/70 max-w-3xl mx-auto">
+                    旋转、缩放和探索蒙古包与藏式碉房的精细模型，了解其独特的建筑结构
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 蒙古包模型 -->
+                <div class="bg-neutral-light rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <i class="fa fa-home text-primary mr-2"></i> 蒙古包
+                        </h3>
+                        <div class="relative h-[400px] rounded-lg overflow-hidden bg-white border border-gray-200 shadow-inner" id="yurt-model-container">
+                            <div class="absolute top-3 left-3 z-10 bg-white/80 bg-blur rounded-md p-2 shadow-md">
+                                <div class="text-sm font-medium text-neutral mb-1">操作提示</div>
+                                <div class="text-xs text-neutral/70">
+                                    <p><i class="fa fa-arrows mr-1"></i> 拖动旋转</p>
+                                    <p><i class="fa fa-search-plus mr-1"></i> 滚轮缩放</p>
+                                    <p><i class="fa fa-hand-paper-o mr-1"></i> 右键平移</p>
+                                </div>
+                            </div>
+                            <!-- 三维模型将在这里渲染 -->
+                        </div>
+                        <div class="mt-4 grid grid-cols-3 gap-2">
+                            <button class="model-view-btn px-3 py-1.5 text-sm rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition" data-view="front">
+                                <i class="fa fa-arrow-up mr-1"></i> 正视图
+                            </button>
+                            <button class="model-view-btn px-3 py-1.5 text-sm rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition" data-view="side">
+                                <i class="fa fa-arrow-right mr-1"></i> 侧视图
+                            </button>
+                            <button class="model-view-btn px-3 py-1.5 text-sm rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition" data-view="top">
+                                <i class="fa fa-arrow-down mr-1"></i> 俯视图
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 藏式碉房模型 -->
+                <div class="bg-neutral-light rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <i class="fa fa-building text-secondary mr-2"></i> 藏式碉房
+                        </h3>
+                        <div class="relative h-[400px] rounded-lg overflow-hidden bg-white border border-gray-200 shadow-inner" id="fortress-model-container">
+                            <div class="absolute top-3 left-3 z-10 bg-white/80 bg-blur rounded-md p-2 shadow-md">
+                                <div class="text-sm font-medium text-neutral mb-1">操作提示</div>
+                                <div class="text-xs text-neutral/70">
+                                    <p><i class="fa fa-arrows mr-1"></i> 拖动旋转</p>
+                                    <p><i class="fa fa-search-plus mr-1"></i> 滚轮缩放</p>
+                                    <p><i class="fa fa-hand-paper-o mr-1"></i> 右键平移</p>
+                                </div>
+                            </div>
+                            <!-- 三维模型将在这里渲染 -->
+                        </div>
+                        <div class="mt-4 grid grid-cols-3 gap-2">
+                            <button class="model-view-btn px-3 py-1.5 text-sm rounded-md bg-secondary/10 text-secondary hover:bg-secondary/20 transition" data-view="front">
+                                <i class="fa fa-arrow-up mr-1"></i> 正视图
+                            </button>
+                            <button class="model-view-btn px-3 py-1.5 text-sm rounded-md bg-secondary/10 text-secondary hover:bg-secondary/20 transition" data-view="side">
+                                <i class="fa fa-arrow-right mr-1"></i> 侧视图
+                            </button>
+                            <button class="model-view-btn px-3 py-1.5 text-sm rounded-md bg-secondary/10 text-secondary hover:bg-secondary/20 transition" data-view="top">
+                                <i class="fa fa-arrow-down mr-1"></i> 俯视图
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 建造工艺与动画演示区域 -->
+    <section id="process" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral mb-4">建造工艺</h2>
+                <p class="text-lg text-neutral/70 max-w-3xl mx-auto">
+                    通过动画演示，了解蒙古包的搭建过程和藏式碉房的建造智慧
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- 蒙古包搭建过程 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <i class="fa fa-cogs text-primary mr-2"></i> 蒙古包搭建过程
+                        </h3>
+                        <div class="relative h-[400px] rounded-lg overflow-hidden bg-white border border-gray-200 shadow-inner" id="yurt-animation-container">
+                            <!-- 动画将在这里渲染 -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+                                    <p class="text-neutral/70">加载动画中...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="text-sm text-neutral/70">
+                                <span id="yurt-animation-step">步骤 1/6</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="yurt-animation-prev" class="px-3 py-1.5 text-sm rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    <i class="fa fa-step-backward mr-1"></i> 上一步
+                                </button>
+                                <button id="yurt-animation-next" class="px-3 py-1.5 text-sm rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition">
+                                    下一步 <i class="fa fa-step-forward ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 藏式碉房建造工艺 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <i class="fa fa-cogs text-secondary mr-2"></i> 藏式碉房建造工艺
+                        </h3>
+                        <div class="relative h-[400px] rounded-lg overflow-hidden bg-white border border-gray-200 shadow-inner" id="fortress-animation-container">
+                            <!-- 动画将在这里渲染 -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="w-16 h-16 border-4 border-secondary/30 border-t-secondary rounded-full animate-spin mx-auto mb-4"></div>
+                                    <p class="text-neutral/70">加载动画中...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="text-sm text-neutral/70">
+                                <span id="fortress-animation-step">步骤 1/5</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="fortress-animation-prev" class="px-3 py-1.5 text-sm rounded-md bg-secondary/10 text-secondary hover:bg-secondary/20 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    <i class="fa fa-step-backward mr-1"></i> 上一步
+                                </button>
+                                <button id="fortress-animation-next" class="px-3 py-1.5 text-sm rounded-md bg-secondary/10 text-secondary hover:bg-secondary/20 transition">
+                                    下一步 <i class="fa fa-step-forward ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 科学原理区域 -->
+    <section id="principles" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral mb-4">科学原理</h2>
+                <p class="text-lg text-neutral/70 max-w-3xl mx-auto">
+                    探索蒙古包与藏式碉房背后的力学原理、材料特性和环境适应性
+                </p>
+            </div>
+
+            <!-- 蒙古包原理 -->
+            <div class="bg-neutral-light rounded-xl shadow-xl overflow-hidden mb-12">
+                <div class="grid grid-cols-1 lg:grid-cols-5">
+                    <div class="lg:col-span-2 bg-primary/10 p-6 lg:p-8 flex items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold text-primary mb-4">蒙古包的力学原理</h3>
+                            <p class="text-neutral/80 mb-4">
+                                蒙古包独特的圆形结构和木框架系统使其具有出色的稳定性和抗风性能。其原理可以通过以下几个方面来理解：
+                            </p>
+                            <ul class="space-y-2 text-neutral/80">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>圆形结构均匀分散风力，减少局部压力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>木格栅墙和伞状顶架形成稳定的力学系统</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>轻钢结构设计便于拆卸和运输，适合游牧生活</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>毛毡覆盖层提供良好的隔热性和防水性</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3 p-6 lg:p-8">
+                        <div class="h-[400px] bg-white rounded-lg shadow-inner overflow-hidden" id="yurt-physics-container">
+                            <!-- 物理模拟将在这里渲染 -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+                                    <p class="text-neutral/70">加载模拟中...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 藏式碉房原理 -->
+            <div class="bg-neutral-light rounded-xl shadow-xl overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-5">
+                    <div class="lg:col-span-3 p-6 lg:p-8">
+                        <div class="h-[400px] bg-white rounded-lg shadow-inner overflow-hidden" id="fortress-physics-container">
+                            <!-- 物理模拟将在这里渲染 -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <div class="w-16 h-16 border-4 border-secondary/30 border-t-secondary rounded-full animate-spin mx-auto mb-4"></div>
+                                    <p class="text-neutral/70">加载模拟中...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 bg-secondary/10 p-6 lg:p-8 flex items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold text-secondary mb-4">藏式碉房的抗震原理</h3>
+                            <p class="text-neutral/80 mb-4">
+                                藏式碉房在高原地区经历了数百年的地震考验，其独特的建筑技术蕴含着丰富的抗震智慧：
+                            </p>
+                            <ul class="space-y-2 text-neutral/80">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>石木结构结合，石材外墙与木梁框架形成柔性体系</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>墙体下宽上窄，重心低，提高稳定性</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>墙体逐层收分，减少地震力传递</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-secondary mt-1 mr-2"></i>
+                                    <span>石材之间采用泥浆砌筑，具有一定的柔韧性</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 互动体验区域 -->
+    <section id="interactive" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-neutral mb-4">互动体验</h2>
+                <p class="text-lg text-neutral/70 max-w-3xl mx-auto">
+                    调整参数，探索不同设计对建筑性能的影响
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- 蒙古包互动体验 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <i class="fa fa-sliders text-primary mr-2"></i> 蒙古包结构参数调整
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <div class="mb-6">
+                                    <label for="yurt-diameter" class="block text-sm font-medium text-neutral mb-1">直径 (米)</label>
+                                    <input type="range" id="yurt-diameter" min="3" max="10" step="0.5" value="6" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>3</span>
+                                        <span id="yurt-diameter-value">6</span>
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="yurt-height" class="block text-sm font-medium text-neutral mb-1">高度 (米)</label>
+                                    <input type="range" id="yurt-height" min="2" max="5" step="0.2" value="3.5" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>2</span>
+                                        <span id="yurt-height-value">3.5</span>
+                                        <span>5</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="yurt-wall-thickness" class="block text-sm font-medium text-neutral mb-1">墙体厚度 (厘米)</label>
+                                    <input type="range" id="yurt-wall-thickness" min="5" max="30" step="1" value="15" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>5</span>
+                                        <span id="yurt-wall-thickness-value">15</span>
+                                        <span>30</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="yurt-wind-speed" class="block text-sm font-medium text-neutral mb-1">风速 (公里/小时)</label>
+                                    <input type="range" id="yurt-wind-speed" min="0" max="120" step="5" value="30" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>0</span>
+                                        <span id="yurt-wind-speed-value">30</span>
+                                        <span>120</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="h-[300px] bg-neutral-light rounded-lg shadow-inner overflow-hidden" id="yurt-interactive-container">
+                                    <!-- 互动模型将在这里渲染 -->
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center p-6">
+                                            <div class="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+                                            <p class="text-neutral/70">加载互动模型中...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-3 bg-primary/5 rounded-lg">
+                                    <h4 class="font-medium text-primary mb-2">稳定性评估</h4>
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                            <div id="yurt-stability-bar" class="bg-primary h-2.5 rounded-full" style="width: 75%"></div>
+                                        </div>
+                                        <span class="ml-2 text-sm font-medium text-primary" id="yurt-stability-value">75%</span>
+                                    </div>
+                                    <p class="text-xs text-neutral/70" id="yurt-stability-text">当前设计在常见风力条件下具有良好的稳定性</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 藏式碉房互动体验 -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <i class="fa fa-sliders text-secondary mr-2"></i> 藏式碉房抗震参数调整
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <div class="mb-6">
+                                    <label for="fortress-height" class="block text-sm font-medium text-neutral mb-1">高度 (层)</label>
+                                    <input type="range" id="fortress-height" min="1" max="5" step="1" value="3" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-secondary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>1</span>
+                                        <span id="fortress-height-value">3</span>
+                                        <span>5</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="fortress-wall-thickness" class="block text-sm font-medium text-neutral mb-1">墙体厚度 (厘米)</label>
+                                    <input type="range" id="fortress-wall-thickness" min="30" max="100" step="5" value="60" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-secondary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>30</span>
+                                        <span id="fortress-wall-thickness-value">60</span>
+                                        <span>100</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="fortress-stone-size" class="block text-sm font-medium text-neutral mb-1">石材尺寸 (厘米)</label>
+                                    <input type="range" id="fortress-stone-size" min="10" max="50" step="5" value="30" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-secondary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>10</span>
+                                        <span id="fortress-stone-size-value">30</span>
+                                        <span>50</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="fortress-earthquake" class="block text-sm font-medium text-neutral mb-1">地震强度 (里氏)</label>
+                                    <input type="range" id="fortress-earthquake" min="0" max="8" step="0.5" value="5" 
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-secondary">
+                                    <div class="flex justify-between text-xs text-neutral/60 mt-1">
+                                        <span>0</span>
+                                        <span id="fortress-earthquake-value">5</span>
+                                        <span>8</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="h-[300px] bg-neutral-light rounded-lg shadow-inner overflow-hidden" id="fortress-interactive-container">
+                                    <!-- 互动模型将在这里渲染 -->
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center p-6">
+                                            <div class="w-16 h-16 border-4 border-secondary/30 border-t-secondary rounded-full animate-spin mx-auto mb-4"></div>
+                                            <p class="text-neutral/70">加载互动模型中...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-3 bg-secondary/5 rounded-lg">
+                                    <h4 class="font-medium text-secondary mb-2">抗震性能评估</h4>
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                            <div id="fortress-stability-bar" class="bg-secondary h-2.5 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                        <span class="ml-2 text-sm font-medium text-secondary" id="fortress-stability-value">85%</span>
+                                    </div>
+                                    <p class="text-xs text-neutral/70" id="fortress-stability-text">当前设计在5级地震下具有良好的抗震性能</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-neutral text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">游牧与高原：建筑智慧的传承</h3>
+                    <p class="text-gray-400 mb-4">
+                        本平台致力于展示蒙古包与藏式碉房的建筑美学与科学原理，探索传统建筑文化的智慧结晶。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fa fa-wechat"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">首页</a></li>
+                        <li><a href="#models" class="text-gray-400 hover:text-white transition">三维模型</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-white transition">建造工艺</a></li>
+                        <li><a href="#principles" class="text-gray-400 hover:text-white transition">科学原理</a></li>
+                        <li><a href="#interactive" class="text-gray-400 hover:text-white transition">互动体验</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope-o mr-2 text-gray-400"></i>
+                            <a href="mailto:info@example.com" class="text-gray-400 hover:text-white transition">info@example.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">+86 123 4567 8910</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-map-marker mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">北京市海淀区中关村南大街5号</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2025 游牧与高原：建筑智慧的传承. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // 移动端菜单切换
+        document.querySelector('.fa-bars').parentElement.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 初始化Three.js场景
+        function initThreeJS() {
+            // 蒙古包模型
+            const yurtContainer = document.getElementById('yurt-model-container');
+            if (yurtContainer) {
+                // 蒙古包模型代码将在这里
+                console.log('初始化蒙古包模型');
+                
+                // 创建场景
+                const yurtScene = new THREE.Scene();
+                yurtScene.background = new THREE.Color(0xf3f4f6);
+                
+                // 创建相机
+                const yurtCamera = new THREE.PerspectiveCamera(75, yurtContainer.clientWidth / yurtContainer.clientHeight, 0.1, 1000);
+                yurtCamera.position.z = 5;
+                
+                // 创建渲染器
+                const yurtRenderer = new THREE.WebGLRenderer({ antialias: true });
+                yurtRenderer.setSize(yurtContainer.clientWidth, yurtContainer.clientHeight);
+                yurtContainer.appendChild(yurtRenderer.domElement);
+                
+                // 添加光源
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+                yurtScene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                directionalLight.position.set(5, 5, 5);
+                yurtScene.add(directionalLight);
+                
+                // 创建蒙古包几何体
+                const yurtGeometry = new THREE.CylinderGeometry(2, 2, 2, 32);
+                const yurtMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xe6ccb3,
+                    roughness: 0.8,
+                    metalness: 0.1
+                });
+                const yurtCylinder = new THREE.Mesh(yurtGeometry, yurtMaterial);
+                yurtCylinder.position.y = 1;
+                yurtScene.add(yurtCylinder);
+                
+                // 创建蒙古包顶部
+                const roofGeometry = new THREE.ConeGeometry(2, 1.5, 32);
+                const roofMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xd9b38c,
+                    roughness: 0.8,
+                    metalness: 0.1
+                });
+                const yurtRoof = new THREE.Mesh(roofGeometry, roofMaterial);
+                yurtRoof.position.y = 2.5;
+                yurtScene.add(yurtRoof);
+                
+                // 添加交互控制器
+                const yurtControls = new THREE.OrbitControls(yurtCamera, yurtRenderer.domElement);
+                yurtControls.enableDamping = true;
+                yurtControls.dampingFactor = 0.05;
+                
+                // 视图按钮事件
+                document.querySelectorAll('#yurt-model-container + div .model-view-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const view = this.getAttribute('data-view');
+                        switch(view) {
+                            case 'front':
+                                yurtCamera.position.set(0, 1, 5);
+                                break;
+                            case 'side':
+                                yurtCamera.position.set(5, 1, 0);
+                                break;
+                            case 'top':
+                                yurtCamera.position.set(0, 8, 0);
+                                break;
+                        }
+                        yurtControls.target.set(0, 1, 0);
+                        yurtControls.update();
+                    });
+                });
+                
+                // 动画循环
+                function yurtAnimate() {
+                    requestAnimationFrame(yurtAnimate);
+                    yurtControls.update();
+                    yurtRenderer.render(yurtScene, yurtCamera);
+                }
+                yurtAnimate();
+                
+                // 窗口大小调整
+                window.addEventListener('resize', function() {
+                    yurtCamera.aspect = yurtContainer.clientWidth / yurtContainer.clientHeight;
+                    yurtCamera.updateProjectionMatrix();
+                    yurtRenderer.setSize(yurtContainer.clientWidth, yurtContainer.clientHeight);
+                });
+            }
+            
+            // 藏式碉房模型
+            const fortressContainer = document.getElementById('fortress-model-container');
+            if (fortressContainer) {
+                // 藏式碉房模型代码将在这里
+                console.log('初始化藏式碉房模型');
+                
+                // 创建场景
+                const fortressScene = new THREE.Scene();
+                fortressScene.background = new THREE.Color(0xf3f4f6);
+                
+                // 创建相机
+                const fortressCamera = new THREE.PerspectiveCamera(75, fortressContainer.clientWidth / fortressContainer.clientHeight, 0.1, 1000);
+                fortressCamera.position.z = 6;
+                
+                // 创建渲染器
+                const fortressRenderer = new THREE.WebGLRenderer({ antialias: true });
+                fortressRenderer.setSize(fortressContainer.clientWidth, fortressContainer.clientHeight);
+                fortressContainer.appendChild(fortressRenderer.domElement);
+                
+                // 添加光源
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+                fortressScene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                directionalLight.position.set(5, 5, 5);
+                fortressScene.add(directionalLight);
+                
+                // 创建藏式碉房几何体
+                const baseGeometry = new THREE.BoxGeometry(4, 1, 4);
+                const baseMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8c7851,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                const base = new THREE.Mesh(baseGeometry, baseMaterial);
+                base.position.y = 0.5;
+                fortressScene.add(base);
+                
+                const middleGeometry = new THREE.BoxGeometry(3.5, 1, 3.5);
+                const middleMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x998665,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                const middle = new THREE.Mesh(middleGeometry, middleMaterial);
+                middle.position.y = 1.5;
+                fortressScene.add(middle);
+                
+                const topGeometry = new THREE.BoxGeometry(3, 1, 3);
+                const topMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xaa9675,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                const top = new THREE.Mesh(topGeometry, topMaterial);
+                top.position.y = 2.5;
+                fortressScene.add(top);
+                
+                // 添加窗户
+                const windowMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x1e3a8a,
+                    roughness: 0.5,
+                    metalness: 0.2
+                });
+                
+                // 底层窗户
+                const window1Geometry = new THREE.BoxGeometry(0.4, 0.6, 0.1);
+                const window1 = new THREE.Mesh(window1Geometry, windowMaterial);
+                window1.position.set(2.1, 0.7, 0);
+                fortressScene.add(window1);
+                
+                const window2 = window1.clone();
+                window2.position.set(-2.1, 0.7, 0);
+                fortressScene.add(window2);
+                
+                const window3 = window1.clone();
+                window3.rotation.y = Math.PI / 2;
+                window3.position.set(0, 0.7, 2.1);
+                fortressScene.add(window3);
+                
+                const window4 = window3.clone();
+                window4.position.set(0, 0.7, -2.1);
+                fortressScene.add(window4);
+                
+                // 中层窗户
+                const window5 = window1.clone();
+                window5.position.set(1.85, 1.7, 0);
+                fortressScene.add(window5);
+                
+                const window6 = window5.clone();
+                window6.position.set(-1.85, 1.7, 0);
+                fortressScene.add(window6);
+                
+                const window7 = window5.clone();
+                window7.rotation.y = Math.PI / 2;
+                window7.position.set(0, 1.7, 1.85);
+                fortressScene.add(window7);
+                
+                const window8 = window7.clone();
+                window8.position.set(0, 1.7, -1.85);
+                fortressScene.add(window8);
+                
+                // 添加交互控制器
+                const fortressControls = new THREE.OrbitControls(fortressCamera, fortressRenderer.domElement);
+                fortressControls.enableDamping = true;
+                fortressControls.dampingFactor = 0.05;
+                
+                // 视图按钮事件
+                document.querySelectorAll('#fortress-model-container + div .model-view-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const view = this.getAttribute('data-view');
+                        switch(view) {
+                            case 'front':
+                                fortressCamera.position.set(0, 1.5, 6);
+                                break;
+                            case 'side':
+                                fortressCamera.position.set(6, 1.5, 0);
+                                break;
+                            case 'top':
+                                fortressCamera.position.set(0, 8, 0);
+                                break;
+                        }
+                        fortressControls.target.set(0, 1.5, 0);
+                        fortressControls.update();
+                    });
+                });
+                
+                // 动画循环
+                function fortressAnimate() {
+                    requestAnimationFrame(fortressAnimate);
+                    fortressControls.update();
+                    fortressRenderer.render(fortressScene, fortressCamera);
+                }
+                fortressAnimate();
+                
+                // 窗口大小调整
+                window.addEventListener('resize', function() {
+                    fortressCamera.aspect = fortressContainer.clientWidth / fortressContainer.clientHeight;
+                    fortressCamera.updateProjectionMatrix();
+                    fortressRenderer.setSize(fortressContainer.clientWidth, fortressContainer.clientHeight);
+                });
+            }
+        }
+
+        // 蒙古包搭建动画
+        function initYurtAnimation() {
+            const container = document.getElementById('yurt-animation-container');
+            if (!container) return;
+            
+            // 清除加载状态
+            container.innerHTML = '';
+            
+            // 创建场景
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf3f4f6);
+            
+            // 创建相机
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 2, 6);
+            
+            // 创建渲染器
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            // 添加光源
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            // 动画步骤
+            let currentStep = 1;
+            const totalSteps = 6;
+            
+            // 初始化场景
+            const groundGeometry = new THREE.PlaneGeometry(10, 10);
+            const groundMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x8bc34a,
+                roughness: 0.8,
+                metalness: 0.0
+            });
+            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -0.01;
+            scene.add(ground);
+            
+            // 创建蒙古包部件
+            const parts = {};
+            
+            // 基础框架
+            const createFramework = () => {
+                const frameworkGroup = new THREE.Group();
+                
+                // 哈那（围墙）
+                const hanaMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                // 创建多个哈那片
+                const hanaCount = 8;
+                const hanaParts = [];
+                
+                for (let i = 0; i < hanaCount; i++) {
+                    const angle = (i / hanaCount) * Math.PI * 2;
+                    const hanaGeometry = new THREE.BoxGeometry(0.1, 1.5, 0.05);
+                    const hana = new THREE.Mesh(hanaGeometry, hanaMaterial);
+                    
+                    const radius = 2;
+                    hana.position.set(
+                        Math.cos(angle) * radius,
+                        0.75,
+                        Math.sin(angle) * radius
+                    );
+                    hana.rotation.y = angle + Math.PI / 2;
+                    
+                    frameworkGroup.add(hana);
+                    hanaParts.push(hana);
+                }
+                
+                // 乌尼（伞状顶架）
+                const uniMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xA0522D,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                const uniCount = 24;
+                const uniParts = [];
+                
+                for (let i = 0; i < uniCount; i++) {
+                    const angle = (i / uniCount) * Math.PI * 2;
+                    const uniGeometry = new THREE.CylinderGeometry(0.03, 0.02, 2, 8);
+                    const uni = new THREE.Mesh(uniGeometry, uniMaterial);
+                    
+                    const radius = 2;
+                    uni.position.set(
+                        Math.cos(angle) * radius,
+                        1.5,
+                        Math.sin(angle) * radius
+                    );
+                    uni.rotation.x = Math.PI / 4;
+                    uni.rotation.y = angle;
+                    
+                    frameworkGroup.add(uni);
+                    uniParts.push(uni);
+                }
+                
+                // 陶脑（天窗）
+                const tonaGeometry = new THREE.RingGeometry(0.3, 0.5, 32);
+                const tonaMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const tona = new THREE.Mesh(tonaGeometry, tonaMaterial);
+                tona.rotation.x = -Math.PI / 2;
+                tona.position.y = 3;
+                frameworkGroup.add(tona);
+                
+                return {
+                    group: frameworkGroup,
+                    hana: hanaParts,
+                    uni: uniParts,
+                    tona: tona
+                };
+            };
+            
+            // 毛毡覆盖
+            const createFelt = () => {
+                const feltGroup = new THREE.Group();
+                
+                // 围墙毛毡
+                const wallFeltGeometry = new THREE.CylinderGeometry(2.1, 2.1, 1.6, 32);
+                const wallFeltMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xf5f5dc,
+                    roughness: 0.9,
+                    metalness: 0.0,
+                    side: THREE.DoubleSide
+                });
+                const wallFelt = new THREE.Mesh(wallFeltGeometry, wallFeltMaterial);
+                wallFelt.position.y = 0.8;
+                wallFelt.visible = false;
+                feltGroup.add(wallFelt);
+                
+                // 顶部毛毡
+                const roofFeltGeometry = new THREE.ConeGeometry(2.1, 1.5, 32);
+                const roofFeltMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xffffe0,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                const roofFelt = new THREE.Mesh(roofFeltGeometry, roofFeltMaterial);
+                roofFelt.position.y = 2.5;
+                roofFelt.visible = false;
+                feltGroup.add(roofFelt);
+                
+                return {
+                    group: feltGroup,
+                    wall: wallFelt,
+                    roof: roofFelt
+                };
+            };
+            
+            // 门
+            const createDoor = () => {
+                const doorGeometry = new THREE.BoxGeometry(0.8, 1.2, 0.05);
+                const doorMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const door = new THREE.Mesh(doorGeometry, doorMaterial);
+                door.position.set(0, 0.6, 2.1);
+                door.visible = false;
+                return door;
+            };
+            
+            // 创建部件
+            parts.framework = createFramework();
+            scene.add(parts.framework.group);
+            
+            parts.felt = createFelt();
+            scene.add(parts.felt.group);
+            
+            parts.door = createDoor();
+            scene.add(parts.door);
+            
+            // 步骤说明
+            const stepTexts = [
+                "准备场地",
+                "安装哈那（围墙框架）",
+                "安装乌尼（伞状顶架）",
+                "安装陶脑（天窗）",
+                "覆盖毛毡",
+                "安装门，完成搭建"
+            ];
+            
+            // 显示当前步骤
+            const stepElement = document.getElementById('yurt-animation-step');
+            stepElement.textContent = `步骤 ${currentStep}/${totalSteps}`;
+            
+            // 更新步骤
+            function updateStep(step) {
+                // 重置所有部件
+                parts.framework.group.visible = false;
+                parts.felt.group.visible = false;
+                parts.door.visible = false;
+                
+                // 显示当前步骤的部件
+                switch(step) {
+                    case 1:
+                        // 只显示场地
+                        break;
+                    case 2:
+                        // 显示哈那
+                        parts.framework.group.visible = true;
+                        parts.framework.hana.forEach(h => h.visible = true);
+                        parts.framework.uni.forEach(u => u.visible = false);
+                        parts.framework.tona.visible = false;
+                        break;
+                    case 3:
+                        // 显示哈那和乌尼
+                        parts.framework.group.visible = true;
+                        parts.framework.hana.forEach(h => h.visible = true);
+                        parts.framework.uni.forEach(u => u.visible = true);
+                        parts.framework.tona.visible = false;
+                        break;
+                    case 4:
+                        // 显示所有框架
+                        parts.framework.group.visible = true;
+                        parts.framework.hana.forEach(h => h.visible = true);
+                        parts.framework.uni.forEach(u => u.visible = true);
+                        parts.framework.tona.visible = true;
+                        break;
+                    case 5:
+                        // 显示框架和毛毡
+                        parts.framework.group.visible = true;
+                        parts.framework.hana.forEach(h => h.visible = true);
+                        parts.framework.uni.forEach(u => u.visible = true);
+                        parts.framework.tona.visible = true;
+                        
+                        parts.felt.group.visible = true;
+                        parts.felt.wall.visible = true;
+                        parts.felt.roof.visible = false;
+                        break;
+                    case 6:
+                        // 显示完整蒙古包
+                        parts.framework.group.visible = true;
+                        parts.framework.hana.forEach(h => h.visible = true);
+                        parts.framework.uni.forEach(u => u.visible = true);
+                        parts.framework.tona.visible = true;
+                        
+                        parts.felt.group.visible = true;
+                        parts.felt.wall.visible = true;
+                        parts.felt.roof.visible = true;
+                        
+                        parts.door.visible = true;
+                        break;
+                }
+                
+                // 更新步骤文本
+                stepElement.textContent = `步骤 ${step}/${totalSteps}`;
+            }
+            
+            // 初始化显示第一步
+            updateStep(1);
+            
+            // 步骤按钮事件
+            document.getElementById('yurt-animation-prev').addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateStep(currentStep);
+                    document.getElementById('yurt-animation-next').disabled = false;
+                    if (currentStep === 1) {
+                        this.disabled = true;
+                    }
+                }
+            });
+            
+            document.getElementById('yurt-animation-next').addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateStep(currentStep);
+                    document.getElementById('yurt-animation-prev').disabled = false;
+                    if (currentStep === totalSteps) {
+                        this.disabled = true;
+                    }
+                }
+            });
+            
+            // 添加交互控制器
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            
+            // 动画循环
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            // 窗口大小调整
+            window.addEventListener('resize', function() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        // 藏式碉房建造动画
+        function initFortressAnimation() {
+            const container = document.getElementById('fortress-animation-container');
+            if (!container) return;
+            
+            // 清除加载状态
+            container.innerHTML = '';
+            
+            // 创建场景
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf3f4f6);
+            
+            // 创建相机
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 3, 8);
+            
+            // 创建渲染器
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            // 添加光源
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            // 动画步骤
+            let currentStep = 1;
+            const totalSteps = 5;
+            
+            // 初始化场景
+            const groundGeometry = new THREE.PlaneGeometry(15, 15);
+            const groundMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0xcd853f,
+                roughness: 0.8,
+                metalness: 0.0
+            });
+            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -0.01;
+            scene.add(ground);
+            
+            // 创建碉房部件
+            const parts = {};
+            
+            // 地基
+            const createFoundation = () => {
+                const foundationGeometry = new THREE.BoxGeometry(5, 0.5, 5);
+                const foundationMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const foundation = new THREE.Mesh(foundationGeometry, foundationMaterial);
+                foundation.position.y = 0.25;
+                return foundation;
+            };
+            
+            // 墙体
+            const createWalls = () => {
+                const wallsGroup = new THREE.Group();
+                
+                // 外墙材料
+                const wallMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xa0522d,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                
+                // 前墙
+                const frontWallGeometry = new THREE.BoxGeometry(5, 3, 0.5);
+                const frontWall = new THREE.Mesh(frontWallGeometry, wallMaterial);
+                frontWall.position.set(0, 1.5, 2.75);
+                wallsGroup.add(frontWall);
+                
+                // 后墙
+                const backWall = frontWall.clone();
+                backWall.position.z = -2.75;
+                wallsGroup.add(backWall);
+                
+                // 左墙
+                const leftWallGeometry = new THREE.BoxGeometry(0.5, 3, 4.5);
+                const leftWall = new THREE.Mesh(leftWallGeometry, wallMaterial);
+                leftWall.position.set(-2.75, 1.5, 0);
+                wallsGroup.add(leftWall);
+                
+                // 右墙
+                const rightWall = leftWall.clone();
+                rightWall.position.x = 2.75;
+                wallsGroup.add(rightWall);
+                
+                return wallsGroup;
+            };
+            
+            // 木梁结构
+            const createWoodBeams = () => {
+                const beamsGroup = new THREE.Group();
+                
+                // 木梁材料
+                const beamMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                // 水平梁
+                const horizontalBeamGeometry = new THREE.BoxGeometry(5, 0.3, 0.3);
+                const horizontalBeam1 = new THREE.Mesh(horizontalBeamGeometry, beamMaterial);
+                horizontalBeam1.position.set(0, 3, 2.2);
+                beamsGroup.add(horizontalBeam1);
+                
+                const horizontalBeam2 = horizontalBeam1.clone();
+                horizontalBeam2.position.z = -2.2;
+                beamsGroup.add(horizontalBeam2);
+                
+                const horizontalBeam3 = horizontalBeam1.clone();
+                horizontalBeam3.rotation.y = Math.PI / 2;
+                horizontalBeam3.position.set(2.2, 3, 0);
+                beamsGroup.add(horizontalBeam3);
+                
+                const horizontalBeam4 = horizontalBeam3.clone();
+                horizontalBeam4.position.x = -2.2;
+                beamsGroup.add(horizontalBeam4);
+                
+                // 垂直支撑
+                const verticalBeamGeometry = new THREE.BoxGeometry(0.3, 0.3, 3);
+                const verticalBeam1 = new THREE.Mesh(verticalBeamGeometry, beamMaterial);
+                verticalBeam1.position.set(2.2, 1.5, 2.2);
+                beamsGroup.add(verticalBeam1);
+                
+                const verticalBeam2 = verticalBeam1.clone();
+                verticalBeam2.position.x = -2.2;
+                beamsGroup.add(verticalBeam2);
+                
+                const verticalBeam3 = verticalBeam1.clone();
+                verticalBeam3.position.z = -2.2;
+                beamsGroup.add(verticalBeam3);
+                
+                const verticalBeam4 = verticalBeam3.clone();
+                verticalBeam4.position.x = -2.2;
+                beamsGroup.add(verticalBeam4);
+                
+                return beamsGroup;
+            };
+            
+            // 二楼
+            const createSecondFloor = () => {
+                const floorGroup = new THREE.Group();
+                
+                // 楼板
+                const floorGeometry = new THREE.BoxGeometry(4.5, 0.2, 4.5);
+                const floorMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x996515,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+                floor.position.y = 3;
+                floorGroup.add(floor);
+                
+                // 二楼墙体
+                const wallMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xb87333,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                
+                // 前墙
+                const frontWallGeometry = new THREE.BoxGeometry(4.5, 2, 0.4);
+                const frontWall = new THREE.Mesh(frontWallGeometry, wallMaterial);
+                frontWall.position.set(0, 4, 2.5);
+                floorGroup.add(frontWall);
+                
+                // 后墙
+                const backWall = frontWall.clone();
+                backWall.position.z = -2.5;
+                floorGroup.add(backWall);
+                
+                // 左墙
+                const leftWallGeometry = new THREE.BoxGeometry(0.4, 2, 4);
+                const leftWall = new THREE.Mesh(leftWallGeometry, wallMaterial);
+                leftWall.position.set(-2.5, 4, 0);
+                floorGroup.add(leftWall);
+                
+                // 右墙
+                const rightWall = leftWall.clone();
+                rightWall.position.x = 2.5;
+                floorGroup.add(rightWall);
+                
+                return floorGroup;
+            };
+            
+            // 屋顶
+            const createRoof = () => {
+                const roofGroup = new THREE.Group();
+                
+                // 屋顶材料
+                const roofMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8b4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                // 屋顶平台
+                const roofGeometry = new THREE.BoxGeometry(4, 0.2, 4);
+                const roof = new THREE.Mesh(roofGeometry, roofMaterial);
+                roof.position.y = 5.1;
+                roofGroup.add(roof);
+                
+                // 女儿墙
+                const parapetMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xa0522d,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                
+                // 前女儿墙
+                const frontParapetGeometry = new THREE.BoxGeometry(4, 0.5, 0.3);
+                const frontParapet = new THREE.Mesh(frontParapetGeometry, parapetMaterial);
+                frontParapet.position.set(0, 5.35, 2.15);
+                roofGroup.add(frontParapet);
+                
+                // 后女儿墙
+                const backParapet = frontParapet.clone();
+                backParapet.position.z = -2.15;
+                roofGroup.add(backParapet);
+                
+                // 左女儿墙
+                const leftParapetGeometry = new THREE.BoxGeometry(0.3, 0.5, 3.4);
+                const leftParapet = new THREE.Mesh(leftParapetGeometry, parapetMaterial);
+                leftParapet.position.set(-2.15, 5.35, 0);
+                roofGroup.add(leftParapet);
+                
+                // 右女儿墙
+                const rightParapet = leftParapet.clone();
+                rightParapet.position.x = 2.15;
+                roofGroup.add(rightParapet);
+                
+                return roofGroup;
+            };
+            
+            // 创建部件
+            parts.foundation = createFoundation();
+            scene.add(parts.foundation);
+            
+            parts.walls = createWalls();
+            scene.add(parts.walls);
+            
+            parts.beams = createWoodBeams();
+            scene.add(parts.beams);
+            
+            parts.secondFloor = createSecondFloor();
+            scene.add(parts.secondFloor);
+            
+            parts.roof = createRoof();
+            scene.add(parts.roof);
+            
+            // 步骤说明
+            const stepTexts = [
+                "准备地基",
+                "建造第一层墙体",
+                "安装木梁结构",
+                "建造第二层",
+                "建造屋顶，完成建造"
+            ];
+            
+            // 显示当前步骤
+            const stepElement = document.getElementById('fortress-animation-step');
+            stepElement.textContent = `步骤 ${currentStep}/${totalSteps}`;
+            
+            // 更新步骤
+            function updateStep(step) {
+                // 重置所有部件
+                parts.foundation.visible = false;
+                parts.walls.visible = false;
+                parts.beams.visible = false;
+                parts.secondFloor.visible = false;
+                parts.roof.visible = false;
+                
+                // 显示当前步骤的部件
+                switch(step) {
+                    case 1:
+                        // 只显示地基
+                        parts.foundation.visible = true;
+                        break;
+                    case 2:
+                        // 显示地基和第一层墙体
+                        parts.foundation.visible = true;
+                        parts.walls.visible = true;
+                        break;
+                    case 3:
+                        // 显示地基、墙体和木梁
+                        parts.foundation.visible = true;
+                        parts.walls.visible = true;
+                        parts.beams.visible = true;
+                        break;
+                    case 4:
+                        // 显示地基、墙体、木梁和二楼
+                        parts.foundation.visible = true;
+                        parts.walls.visible = true;
+                        parts.beams.visible = true;
+                        parts.secondFloor.visible = true;
+                        break;
+                    case 5:
+                        // 显示完整碉房
+                        parts.foundation.visible = true;
+                        parts.walls.visible = true;
+                        parts.beams.visible = true;
+                        parts.secondFloor.visible = true;
+                        parts.roof.visible = true;
+                        break;
+                }
+                
+                // 更新步骤文本
+                stepElement.textContent = `步骤 ${step}/${totalSteps}`;
+            }
+            
+            // 初始化显示第一步
+            updateStep(1);
+            
+            // 步骤按钮事件
+            document.getElementById('fortress-animation-prev').addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateStep(currentStep);
+                    document.getElementById('fortress-animation-next').disabled = false;
+                    if (currentStep === 1) {
+                        this.disabled = true;
+                    }
+                }
+            });
+            
+            document.getElementById('fortress-animation-next').addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateStep(currentStep);
+                    document.getElementById('fortress-animation-prev').disabled = false;
+                    if (currentStep === totalSteps) {
+                        this.disabled = true;
+                    }
+                }
+            });
+            
+            // 添加交互控制器
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            
+            // 动画循环
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            // 窗口大小调整
+            window.addEventListener('resize', function() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        // 蒙古包物理模拟
+        function initYurtPhysics() {
+            const container = document.getElementById('yurt-physics-container');
+            if (!container) return;
+            
+            // 清除加载状态
+            container.innerHTML = '';
+            
+            // 创建场景
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf3f4f6);
+            
+            // 创建相机
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 2, 6);
+            
+            // 创建渲染器
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            // 添加光源
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            // 创建蒙古包
+            const createYurt = () => {
+                const yurtGroup = new THREE.Group();
+                
+                // 哈那（围墙）
+                const hanaMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                // 创建多个哈那片
+                const hanaCount = 8;
+                const hanaParts = [];
+                
+                for (let i = 0; i < hanaCount; i++) {
+                    const angle = (i / hanaCount) * Math.PI * 2;
+                    const hanaGeometry = new THREE.BoxGeometry(0.1, 1.5, 0.05);
+                    const hana = new THREE.Mesh(hanaGeometry, hanaMaterial);
+                    
+                    const radius = 2;
+                    hana.position.set(
+                        Math.cos(angle) * radius,
+                        0.75,
+                        Math.sin(angle) * radius
+                    );
+                    hana.rotation.y = angle + Math.PI / 2;
+                    
+                    yurtGroup.add(hana);
+                    hanaParts.push(hana);
+                }
+                
+                // 乌尼（伞状顶架）
+                const uniMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xA0522D,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                const uniCount = 24;
+                const uniParts = [];
+                
+                for (let i = 0; i < uniCount; i++) {
+                    const angle = (i / uniCount) * Math.PI * 2;
+                    const uniGeometry = new THREE.CylinderGeometry(0.03, 0.02, 2, 8);
+                    const uni = new THREE.Mesh(uniGeometry, uniMaterial);
+                    
+                    const radius = 2;
+                    uni.position.set(
+                        Math.cos(angle) * radius,
+                        1.5,
+                        Math.sin(angle) * radius
+                    );
+                    uni.rotation.x = Math.PI / 4;
+                    uni.rotation.y = angle;
+                    
+                    yurtGroup.add(uni);
+                    uniParts.push(uni);
+                }
+                
+                // 陶脑（天窗）
+                const tonaGeometry = new THREE.RingGeometry(0.3, 0.5, 32);
+                const tonaMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const tona = new THREE.Mesh(tonaGeometry, tonaMaterial);
+                tona.rotation.x = -Math.PI / 2;
+                tona.position.y = 3;
+                yurtGroup.add(tona);
+                
+                // 毛毡
+                const feltMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xf5f5dc,
+                    roughness: 0.9,
+                    metalness: 0.0,
+                    transparent: true,
+                    opacity: 0.7
+                });
+                
+                // 围墙毛毡
+                const wallFeltGeometry = new THREE.CylinderGeometry(2.1, 2.1, 1.6, 32);
+                const wallFelt = new THREE.Mesh(wallFeltGeometry, feltMaterial);
+                wallFelt.position.y = 0.8;
+                yurtGroup.add(wallFelt);
+                
+                // 顶部毛毡
+                const roofFeltGeometry = new THREE.ConeGeometry(2.1, 1.5, 32);
+                const roofFelt = new THREE.Mesh(roofFeltGeometry, feltMaterial);
+                roofFelt.position.y = 2.5;
+                yurtGroup.add(roofFelt);
+                
+                return yurtGroup;
+            };
+            
+            // 创建风向指示器
+            const createWindIndicator = () => {
+                const indicatorGroup = new THREE.Group();
+                
+                // 风向杆
+                const poleGeometry = new THREE.CylinderGeometry(0.02, 0.02, 1, 8);
+                const poleMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 });
+                const pole = new THREE.Mesh(poleGeometry, poleMaterial);
+                pole.position.y = 0.5;
+                indicatorGroup.add(pole);
+                
+                // 风向旗
+                const flagGeometry = new THREE.PlaneGeometry(0.5, 0.3);
+                const flagMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xff0000,
+                    side: THREE.DoubleSide
+                });
+                const flag = new THREE.Mesh(flagGeometry, flagMaterial);
+                flag.position.set(0, 1, 0);
+                flag.rotation.y = Math.PI / 2;
+                indicatorGroup.add(flag);
+                
+                return {
+                    group: indicatorGroup,
+                    flag: flag
+                };
+            };
+            
+            // 创建蒙古包和风向指示器
+            const yurt = createYurt();
+            scene.add(yurt);
+            
+            const windIndicator = createWindIndicator();
+            windIndicator.group.position.set(-3, 0, 0);
+            scene.add(windIndicator.group);
+            
+            // 风速模拟
+            let windSpeed = 30; // 公里/小时
+            let windDirection = Math.PI / 2; // 风向，弧度
+            
+            // 更新风速显示
+            function updateWindVisualization() {
+                // 更新风向旗
+                windIndicator.flag.rotation.y = windDirection + Math.PI / 2;
+                
+                // 根据风速改变旗的摆动
+                const flutterIntensity = Math.min(windSpeed / 100, 1);
+                windIndicator.flag.geometry.dispose();
+                const newFlagGeometry = new THREE.PlaneGeometry(0.5, 0.3);
+                
+                // 添加随机波动模拟风
+                const vertices = newFlagGeometry.attributes.position.array;
+                for (let i = 0; i < vertices.length; i += 3) {
+                    if (i % 6 === 0) { // 每隔一个顶点添加波动
+                        const offset = Math.sin(Date.now() * 0.002 + i) * 0.05 * flutterIntensity;
+                        vertices[i] += offset;
+                    }
+                }
+                
+                windIndicator.flag.geometry = newFlagGeometry;
+                
+                // 模拟蒙古包在风中的轻微晃动
+                const shakeIntensity = windSpeed / 2000;
+                yurt.rotation.y = Math.sin(Date.now() * 0.001) * shakeIntensity;
+                
+                // 更新毛毡的透明度表示风力影响
+                const feltMaterials = [
+                    yurt.children[5].material, // 围墙毛毡
+                    yurt.children[6].material  // 顶部毛毡
+                ];
+                
+                feltMaterials.forEach(material => {
+                    material.opacity = Math.max(0.5, 0.8 - (windSpeed / 150));
+                    material.needsUpdate = true;
+                });
+            }
+            
+            // 添加交互控制器
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            
+            // 动画循环
+            function animate() {
+                requestAnimationFrame(animate);
+                updateWindVisualization();
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            // 窗口大小调整
+            window.addEventListener('resize', function() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        // 藏式碉房物理模拟
+        function initFortressPhysics() {
+            const container = document.getElementById('fortress-physics-container');
+            if (!container) return;
+            
+            // 清除加载状态
+            container.innerHTML = '';
+            
+            // 创建场景
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf3f4f6);
+            
+            // 创建相机
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 3, 8);
+            
+            // 创建渲染器
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            // 添加光源
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            // 创建藏式碉房
+            const createFortress = () => {
+                const fortressGroup = new THREE.Group();
+                
+                // 地基
+                const foundationGeometry = new THREE.BoxGeometry(5, 0.5, 5);
+                const foundationMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const foundation = new THREE.Mesh(foundationGeometry, foundationMaterial);
+                foundation.position.y = 0.25;
+                fortressGroup.add(foundation);
+                
+                // 墙体
+                const wallMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xa0522d,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                
+                // 前墙
+                const frontWallGeometry = new THREE.BoxGeometry(5, 3, 0.5);
+                const frontWall = new THREE.Mesh(frontWallGeometry, wallMaterial);
+                frontWall.position.set(0, 1.5, 2.75);
+                fortressGroup.add(frontWall);
+                
+                // 后墙
+                const backWall = frontWall.clone();
+                backWall.position.z = -2.75;
+                fortressGroup.add(backWall);
+                
+                // 左墙
+                const leftWallGeometry = new THREE.BoxGeometry(0.5, 3, 4.5);
+                const leftWall = new THREE.Mesh(leftWallGeometry, wallMaterial);
+                leftWall.position.set(-2.75, 1.5, 0);
+                fortressGroup.add(leftWall);
+                
+                // 右墙
+                const rightWall = leftWall.clone();
+                rightWall.position.x = 2.75;
+                fortressGroup.add(rightWall);
+                
+                // 木梁结构
+                const beamMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                // 水平梁
+                const horizontalBeamGeometry = new THREE.BoxGeometry(5, 0.3, 0.3);
+                const horizontalBeam1 = new THREE.Mesh(horizontalBeamGeometry, beamMaterial);
+                horizontalBeam1.position.set(0, 3, 2.2);
+                fortressGroup.add(horizontalBeam1);
+                
+                const horizontalBeam2 = horizontalBeam1.clone();
+                horizontalBeam2.position.z = -2.2;
+                fortressGroup.add(horizontalBeam2);
+                
+                const horizontalBeam3 = horizontalBeam1.clone();
+                horizontalBeam3.rotation.y = Math.PI / 2;
+                horizontalBeam3.position.set(2.2, 3, 0);
+                fortressGroup.add(horizontalBeam3);
+                
+                const horizontalBeam4 = horizontalBeam3.clone();
+                horizontalBeam4.position.x = -2.2;
+                fortressGroup.add(horizontalBeam4);
+                
+                // 垂直支撑
+                const verticalBeamGeometry = new THREE.BoxGeometry(0.3, 0.3, 3);
+                const verticalBeam1 = new THREE.Mesh(verticalBeamGeometry, beamMaterial);
+                verticalBeam1.position.set(2.2, 1.5, 2.2);
+                fortressGroup.add(verticalBeam1);
+                
+                const verticalBeam2 = verticalBeam1.clone();
+                verticalBeam2.position.x = -2.2;
+                fortressGroup.add(verticalBeam2);
+                
+                const verticalBeam3 = verticalBeam1.clone();
+                verticalBeam3.position.z = -2.2;
+                fortressGroup.add(verticalBeam3);
+                
+                const verticalBeam4 = verticalBeam3.clone();
+                verticalBeam4.position.x = -2.2;
+                fortressGroup.add(verticalBeam4);
+                
+                // 二楼
+                const floorGeometry = new THREE.BoxGeometry(4.5, 0.2, 4.5);
+                const floorMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x996515,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+                floor.position.y = 3;
+                fortressGroup.add(floor);
+                
+                // 二楼墙体
+                const secondFloorWallMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xb87333,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                
+                // 前墙
+                const secondFrontWallGeometry = new THREE.BoxGeometry(4.5, 2, 0.4);
+                const secondFrontWall = new THREE.Mesh(secondFrontWallGeometry, secondFloorWallMaterial);
+                secondFrontWall.position.set(0, 4, 2.5);
+                fortressGroup.add(secondFrontWall);
+                
+                // 后墙
+                const secondBackWall = secondFrontWall.clone();
+                secondBackWall.position.z = -2.5;
+                fortressGroup.add(secondBackWall);
+                
+                // 左墙
+                const secondLeftWallGeometry = new THREE.BoxGeometry(0.4, 2, 4);
+                const secondLeftWall = new THREE.Mesh(secondLeftWallGeometry, secondFloorWallMaterial);
+                secondLeftWall.position.set(-2.5, 4, 0);
+                fortressGroup.add(secondLeftWall);
+                
+                // 右墙
+                const secondRightWall = secondLeftWall.clone();
+                secondRightWall.position.x = 2.5;
+                fortressGroup.add(secondRightWall);
+                
+                // 屋顶
+                const roofMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8b4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                
+                // 屋顶平台
+                const roofGeometry = new THREE.BoxGeometry(4, 0.2, 4);
+                const roof = new THREE.Mesh(roofGeometry, roofMaterial);
+                roof.position.y = 5.1;
+                fortressGroup.add(roof);
+                
+                // 女儿墙
+                const parapetMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xa0522d,
+                    roughness: 0.9,
+                    metalness: 0.0
+                });
+                
+                // 前女儿墙
+                const frontParapetGeometry = new THREE.BoxGeometry(4, 0.5, 0.3);
+                const frontParapet = new THREE.Mesh(frontParapetGeometry, parapetMaterial);
+                frontParapet.position.set(0, 5.35, 2.15);
+                fortressGroup.add(frontParapet);
+                
+                // 后女儿墙
+                const backParapet = frontParapet.clone();
+                backParapet.position.z = -2.15;
+                fortressGroup.add(backParapet);
+                
+                // 左女儿墙
+                const leftParapetGeometry = new THREE.BoxGeometry(0.3, 0.5, 3.4);
+                const leftParapet = new THREE.Mesh(leftParapetGeometry, parapetMaterial);
+                leftParapet.position.set(-2.15, 5.35, 0);
+                fortressGroup.add(leftParapet);
+                
+                // 右女儿墙
+                const rightParapet = leftParapet.clone();
+                rightParapet.position.x = 2.15;
+                fortressGroup.add(rightParapet);
+                
+                return fortressGroup;
+            };
+            
+            // 创建地震指示器
+            const createEarthquakeIndicator = () => {
+                const indicatorGroup = new THREE.Group();
+                
+                // 底座
+                const baseGeometry = new THREE.BoxGeometry(0.5, 0.1, 0.5);
+                const baseMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 });
+                const base = new THREE.Mesh(baseGeometry, baseMaterial);
+                indicatorGroup.add(base);
+                
+                // 指针
+                const needleGeometry = new THREE.CylinderGeometry(0.02, 0.02, 1, 8);
+                const needleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+                const needle = new THREE.Mesh(needleGeometry, needleMaterial);
+                needle.position.y = 0.55;
+                indicatorGroup.add(needle);
+                
+                return {
+                    group: indicatorGroup,
+                    needle: needle
+                };
+            };
+            
+            // 创建碉房和地震指示器
+            const fortress = createFortress();
+            scene.add(fortress);
+            
+            const earthquakeIndicator = createEarthquakeIndicator();
+            earthquakeIndicator.group.position.set(-3, 0, 0);
+            scene.add(earthquakeIndicator.group);
+            
+            // 地震模拟
+            let earthquakeIntensity = 5; // 里氏震级
+            let earthquakeDirection = Math.random() * Math.PI * 2; // 地震方向，弧度
+            
+            // 更新地震显示
+            function updateEarthquakeVisualization() {
+                // 更新地震指针
+                const shakeAngle = earthquakeIntensity * 0.1;
+                earthquakeIndicator.needle.rotation.z = Math.sin(Date.now() * 0.005) * shakeAngle;
+                
+                // 模拟碉房在地震中的晃动
+                const shakeIntensity = earthquakeIntensity / 200;
+                const shakeX = Math.sin(Date.now() * 0.005 + earthquakeDirection) * shakeIntensity;
+                const shakeZ = Math.cos(Date.now() * 0.005 + earthquakeDirection) * shakeIntensity;
+                
+                fortress.position.set(shakeX, 0, shakeZ);
+                
+                // 轻微旋转模拟结构柔性
+                const rotationIntensity = earthquakeIntensity / 400;
+                fortress.rotation.y = Math.sin(Date.now() * 0.003) * rotationIntensity;
+                
+                // 模拟墙体在强震下的轻微变形
+                if (earthquakeIntensity > 6) {
+                    const deformation = (earthquakeIntensity - 6) * 0.01;
+                    
+                    // 只修改几何体，不影响原始几何体
+                    const walls = [
+                        fortress.children[1], // 前墙
+                        fortress.children[2], // 后墙
+                        fortress.children[3], // 左墙
+                        fortress.children[4]  // 右墙
+                    ];
+                    
+                    walls.forEach(wall => {
+                        // 复制几何体并应用变形
+                        if (!wall.userData.originalGeometry) {
+                            wall.userData.originalGeometry = wall.geometry.clone();
+                        }
+                        
+                        const newGeometry = wall.userData.originalGeometry.clone();
+                        const vertices = newGeometry.attributes.position.array;
+                        
+                        for (let i = 0; i < vertices.length; i += 3) {
+                            // 根据顶点位置添加变形
+                            const x = vertices[i];
+                            const y = vertices[i + 1];
+                            const z = vertices[i + 2];
+                            
+                            // 顶部变形更大
+                            const heightFactor = y / 3;
+                            
+                            vertices[i] += Math.sin(Date.now() * 0.002 + x + z) * deformation * heightFactor;
+                            vertices[i + 2] += Math.cos(Date.now() * 0.002 + x + z) * deformation * heightFactor;
+                        }
+                        
+                        newGeometry.attributes.position.needsUpdate = true;
+                        wall.geometry.dispose();
+                        wall.geometry = newGeometry;
+                    });
+                }
+            }
+            
+            // 添加交互控制器
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            
+            // 动画循环
+            function animate() {
+                requestAnimationFrame(animate);
+                updateEarthquakeVisualization();
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            // 窗口大小调整
+            window.addEventListener('resize', function() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        // 蒙古包互动体验
+        function initYurtInteractive() {
+            const container = document.getElementById('yurt-interactive-container');
+            if (!container) return;
+            
+            // 清除加载状态
+            container.innerHTML = '';
+            
+            // 创建场景
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf3f4f6);
+            
+            // 创建相机
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 2, 6);
+            
+            // 创建渲染器
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            // 添加光源
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            // 蒙古包参数
+            let yurtParams = {
+                diameter: 6,    // 直径 (米)
+                height: 3.5,    // 高度 (米)
+                wallThickness: 15,  // 墙体厚度 (厘米)
+                windSpeed: 30   // 风速 (公里/小时)
+            };
+            
+            // 创建蒙古包
+            let yurt = null;
+            
+            function createYurt() {
+                // 移除旧的蒙古包
+                if (yurt) {
+                    scene.remove(yurt);
+                }
+                
+                yurt = new THREE.Group();
+                
+                // 计算实际参数
+                const radius = yurtParams.diameter / 2;
+                const wallHeight = yurtParams.height * 0.6;
+                const roofHeight = yurtParams.height - wallHeight;
+                
+                // 地面
+                const groundGeometry = new THREE.PlaneGeometry(15, 15);
+                const groundMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8bc34a,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+                ground.rotation.x = -Math.PI / 2;
+                ground.position.y = -0.01;
+                yurt.add(ground);
+                
+                // 墙体
+                const wallThickness = yurtParams.wallThickness / 100; // 转换为米
+                const wallGeometry = new THREE.CylinderGeometry(radius, radius, wallHeight, 32);
+                const wallMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xe6ccb3,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+                wall.position.y = wallHeight / 2;
+                yurt.add(wall);
+                
+                // 屋顶
+                const roofGeometry = new THREE.ConeGeometry(radius, roofHeight, 32);
+                const roofMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xd9b38c,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const roof = new THREE.Mesh(roofGeometry, roofMaterial);
+                roof.position.y = wallHeight + roofHeight / 2;
+                yurt.add(roof);
+                
+                // 门
+                const doorWidth = 0.8;
+                const doorHeight = 1.8;
+                const doorGeometry = new THREE.BoxGeometry(doorWidth, doorHeight, 0.05);
+                const doorMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0x8B4513,
+                    roughness: 0.8,
+                    metalness: 0.0
+                });
+                const door = new THREE.Mesh(doorGeometry, doorMaterial);
+                door.position.set(0, doorHeight / 2, radius + 0.03);
+                yurt.add(door);
+                
+                // 天窗
+                const skylightRadius = radius * 0.2;
+                const skylightGeometry = new THREE.CircleGeometry(skylightRadius, 32);
+                const skylightMaterial = new THREE.MeshStandardMaterial({ 
+                    color: 0xf0e68c,
+                    roughness: 0.5,
+                    metalness: 0.0
+                });
+                const skylight = new THREE.Mesh(skylightGeometry, skylightMaterial);
+                skylight.rotation.x = -Math.PI / 2;
+                skylight.position.y = wallHeight + roofHeight;
+                yurt.add(skylight);
+                
+                scene.add(yurt);
+                
+                // 更新稳定性评估
+                updateStabilityAssessment();
+            }
+            
+            // 更新稳定性评估
+            function updateStabilityAssessment() {
+                // 简单计算稳定性分数
+                // 直径越大、高度越低、墙体越厚、风速越小，稳定性越高
+                const stability = Math.round(
+                    (1 - (yurtParams.windSpeed / 120)) *  // 风速影响
+                    (yurtParams.height / 5) *            // 高度影响
+                    (1 - ((yurtParams.diameter - 3) / 7)) *  // 直径影响
+                    (yurtParams.wallThickness / 30) *    // 墙体厚度影响
+                    100
+                );
+                
+                // 确保分数在0-100之间
+                const clampedStability = Math.max(0, Math.min(100, stability));
+                
+                // 更新DOM
+                const bar = document.getElementById('yurt-stability-bar');
+                const value = document.getElementById('yurt-stability-value');
+                const text = document.getElementById('yurt-stability-text');
+                
+                bar.style.width = `${clampedStability}%`;
+                value.textContent = `${clampedStability}%`;
+                
+                // 根据稳定性设置颜色
+                if (clampedStability >= 80) {
+                    bar.className = 'bg-primary h-2.5 rounded-full';
+                    text.textContent = "当前设计在常见风力条件下具有优秀的稳定性";
+                    text.className = 'text-xs text-green-600';
+                } else if (clampedStability >= 60) {
+                    bar.className = 'bg-yellow-500 h-2.5 rounded-full';
+                    text.textContent = "当前设计在常见风力条件下具有良好的稳定性";
+                    text.className = 'text-xs text-yellow-600';
+                } else {
+                    bar.className = 'bg-red-500 h-2.5 rounded-full';
+                    text.textContent = "当前设计在强风条件下稳定性较低，建议调整参数";
+                    text.className = 'text-xs text-red-600';
+                }
+            }
+            
+            // 初始化蒙古包
+            createYurt();
+            
+            // 滑块事件
+            document.getElementById('yurt-diameter').addEventListener('input', function() {
+                yurtParams.diameter = parseFloat(this.value);
+                document.getElementById('yurt-diameter-value').textContent = this.value;
+                createYurt();
+            });
+            
+            document.getElementById('yurt-height').addEventListener('input', function() {
+                yurtParams.height = parseFloat(this.value);
+                document.getElementById('yurt-height-value').textContent = this.value;
+                createYurt();
+            });
+            
+            document.getElementById('yurt-wall-thickness').addEventListener('input', function() {
+                yurtParams.wallThickness = parseFloat(this.value);
+                document.getElementById('yurt-wall-thickness-value').textContent = this.value;
+                createYurt();
+            });
+            
+            document.getElementById('yurt-wind-speed').addEventListener('input', function() {
+                yurtParams.windSpeed = parseFloat(this.value);
+                document.getElementById('yurt-wind-speed-value').textContent = this.value;
+                createYurt();
+            });
+            
+            // 添加交互控制器
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            
+            // 动画循环
+            function animate() {
+                requestAnimationFrame(animate);
+               
